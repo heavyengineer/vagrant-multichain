@@ -1,0 +1,35 @@
+---
+
+    - name: Create user for running the chains
+      user: name="{{user_name}}"
+    - name: Download and verify the software
+      get_url: url={{download_url}}{{download_filename}} dest=/home/{{user_name}}/
+    #checksum={{ download_checksum_type }}:{{ download_checksum }}
+    - name: Decompress binaries
+      unarchive: src=/home/{{user_name}}/{{download_filename}} dest=/home/{{user_name}}/ copy=no
+    # these can be moved to the specific playbook for orchestration
+    - name: Set correct permissions for multichain binaries in users home dir
+      file: path={{mc_path}} owner={{user_name}} group={{user_name}} mode=0544 recurse=yes
+    - name: creating "/home/{{user_name}}/.multichain/multichain.conf"
+      lineinfile: dest={{mc_conf}} create=yes state=present owner={{user_name}} group={{user_name}} mode=444 line={{mc_conf_content}}
+      become_user: multichain
+    - name: List networks the user is allowed to connect from
+      lineinfile: dest={{mc_conf}} backup=yes state=present regexp="^rpcallowip" line="rpcallowip={{mc_conf_rpcallowip}}"
+    - name: Create chain named {{chain_name}}
+      shell: "{{mc_util}} create {{chain_name}} creates=/home/{{user_name}}/.multichain/{{chain_name}}/params.dat executable=/bin/bash chdir={{mc_home}}"
+      become_user: multichain
+    - name: add a chain description
+      lineinfile: dest={{chain_params}} backup=yes state=present regexp="^chain-description" line="chain-description = {{chain_description}}"
+      become_user: multichain
+    - name: setting static port for network connectins
+      lineinfile: dest={{chain_params}} backup=yes state=present regexp="^default-network-port" line="default-network-port = {{port}}"
+      become_user: multichain
+    - name: setting static port for network rpc interface
+      lineinfile: dest={{chain_params}} backup=yes state=present regexp="^default-rpc-port" line="default-rpc-port = {{rpc_port}}"
+      become_user: multichain
+    - name: Setting to allow anyone to connect to the chain
+      lineinfile: dest={{chain_params}} backup=yes state=present regexp="^anyone-can-connect =" line="anyone-can-connect = {{anyone_can_connect}}"
+      become_user: multichain
+    - name: Allow anyone to mine the chain
+      lineinfile: dest={{chain_params}} backup=yes state=present regexp="^anyone-can-mine =" line="anyone-can-mine = {{anyone_can_mine}}"
+      become_user: multichain

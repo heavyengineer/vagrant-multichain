@@ -1,0 +1,9 @@
+---
+  chain_name: multichain-node-1
+  chain_description: multichain-node-1
+  mc_conf_content: rpcpassword=j43kh43o8funbfr8vu0hrhgr3gr80grye0gotn2
+  mc_conf_rpcallowip: 192.168.0.0/24
+  port: 61686
+  rpc_port: 61685
+  anyone_can_connect: TRUE
+  anyone_can_mine: TRUE

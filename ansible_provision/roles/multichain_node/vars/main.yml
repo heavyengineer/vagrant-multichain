@@ -1,0 +1,22 @@
+---
+   user_name: multichain
+   download_url: "http://www.multichain.com/download/"
+   download_version: "multichain-1.0-alpha-13"
+   download_extension: ".tar.gz"
+   download_filename: "{{download_version}}{{download_extension}}"
+   # this checksum is incorrect and unused. it's here for reference only. 
+   download_checksum: f30b823386761ca3327ab936b78f1c8a185213854d3725d8cbdbed8b24035982
+   download_checksum_type: sha256
+   mc_home: /home/{{user_name}}/
+   mc_path: "{{mc_home}}{{download_version}}"
+   mc_util: "{{mc_path}}/multichain-util"
+   mc_daemon: "{{mc_path}}/multichaind"
+   mc_conf: "{{mc_home}}.multichain/multichain.conf"
+   chain_params: "{{mc_home}}.multichain/{{chain_name}}/params.dat"
+   # whilst these may be determined randomly at install time, it's more difficult to write automated tests
+   # these config files should be generated programmatically to facilitate large numbers of test chains
+   port: 61686
+   rpc_port: 61685
+   anyone_can_connect: TRUE
+   anyone_can_mine: TRUE
+

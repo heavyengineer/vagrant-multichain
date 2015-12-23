@@ -1,0 +1,4 @@
+---
+    - name: Initialise the blockchain and mine the genesis block
+      shell: "{{mc_daemon}} {{chain_name}} -daemon executable=/bin/bash chdir={{mc_home}}"
+      become_user: "{{user_name}}"

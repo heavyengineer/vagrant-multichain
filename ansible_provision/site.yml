@@ -1,0 +1,7 @@
+---
+  - hosts: multichain_nodes
+    roles:
+        - multichain_node
+        - start_multichain_node
+    remote_user: vagrant
+    become: yes
