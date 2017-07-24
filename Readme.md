@@ -4,6 +4,8 @@ This project creates multiple multichains on multiple Vagrant instances using an
 ## Pre-requisites
 
 ### Vagrant plugins
+We recommend installing the following plugins us9ing this syntax:
+* vagrant plugin install vagrant-cachier
 
 ## Multichain configuration
 * Runs as user called 'multichain'
@@ -16,7 +18,7 @@ This project creates multiple multichains on multiple Vagrant instances using an
 * run vagrant up
 
 ## Important!
-When you reboot the services won't start (unless this has been added to the code in which case this should be removed).
+When you reboot, the services won't start (unless this has been added to the code in which case this should be removed).
 Change user to multichain and add this to crontab.
 
 ```bash
@@ -27,7 +29,7 @@ $ crontab -e
 and then add this as the last line, will cause the chain to start on boot (remember to select the correct version in the path)
 
 ```bash
-@reboot /home/multichain/multichain-1.0-alpha-13/multichaind presence -daemon executable=/bin/bash chdir=/home/multichain/
+@reboot /home/multichain/multichain-1.0-beta-2/multichaind presence -daemon executable=/bin/bash chdir=/home/multichain/
 ```
 ### RPC for remote connections
 if connecting to the rpc port from a remote machine (most probable for testing).  then the multichain.conf file needs to be altered to allow your network or host to access:
@@ -43,8 +45,8 @@ Run 'vagrant status' and you should see two servers:
 $ vagrant status
 Current machine states:
 
+multichain-node-0             running (virtualbox)
 multichain-node-1             running (virtualbox)
-multichain-node-2             running (virtualbox)
 
 This environment represents multiple VMs. The VMs are all listed
 above with their current state. For more information about a specific
