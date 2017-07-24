@@ -4,7 +4,7 @@ This project creates multiple multichains on multiple Vagrant instances using an
 ## Pre-requisites
 
 ### Vagrant plugins
-We recommend installing the following plugins us9ing this syntax:
+We recommend installing the following plugins using this syntax:
 * vagrant plugin install vagrant-cachier
 
 ## Multichain configuration
@@ -53,7 +53,7 @@ above with their current state. For more information about a specific
 VM, run `vagrant status NAME`.
 ```
 
-connect to multichain-node-1 and check multichain is running.
+connect to multichain-node-0 and check multichain is running.
 
 ```bash
 $ vagrant ssh multichain-node-0
@@ -62,7 +62,7 @@ multich+  2790     1  0 19:52 ?        00:00:03 /home/multichain/multichain-1.0-
 
 ```
 
-Doing this individually is laborious, so need a script to do it automatically.
+TODO: Doing this individually is laborious, so need a script to do it automatically.
 
 get the rpc password for the server
 
