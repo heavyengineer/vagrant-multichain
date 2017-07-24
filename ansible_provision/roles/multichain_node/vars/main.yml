@@ -1,7 +1,7 @@
 ---
    user_name: multichain
    download_url: "http://www.multichain.com/download/"
-   download_version: "multichain-1.0-alpha-13"
+   download_version: "multichain-1.0-beta-2"
    download_extension: ".tar.gz"
    download_filename: "{{download_version}}{{download_extension}}"
    # this checksum is incorrect and unused. it's here for reference only. 
